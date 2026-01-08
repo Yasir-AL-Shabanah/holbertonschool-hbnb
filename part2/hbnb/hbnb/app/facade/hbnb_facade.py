@@ -56,3 +56,5 @@ class HBnBFacade:
 
     def get_reviews_by_place(self, place_id: str):
         return [r for r in self.get_all_reviews() if getattr(r, "place_id", None) == place_id]
+# Backward-compatible alias (some modules import HbnbFacade)
+HbnbFacade = HBnBFacade
