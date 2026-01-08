@@ -6,56 +6,53 @@ from app.models.user import User
 
 class HBnBFacade:
     def __init__(self) -> None:
-        
-        self.repo = InMemoryRepository()
+        # ✅ Repository منفصل لكل كيان
+        self.users_repo = InMemoryRepository()
+        self.places_repo = InMemoryRepository()
+        self.reviews_repo = InMemoryRepository()
 
     # ---------- Users ----------
-    def get_user(self, user_id: str):
-        return self.repo.get(User, user_id)
+    def create_user(self, data: dict) -> User:
+        user = User(**data)
+        self.users_repo.add(user)
+        return user
+
+    def get_user(self, user_id: str) -> User | None:
+        return self.users_repo.get(user_id)
+
+    def get_all_users(self):
+        return self.users_repo.get_all()
 
     # ---------- Places ----------
-    def get_place(self, place_id: str):
-        return self.repo.get(Place, place_id)
+    def create_place(self, data: dict) -> Place:
+        place = Place(**data)
+        self.places_repo.add(place)
+        return place
+
+    def get_place(self, place_id: str) -> Place | None:
+        return self.places_repo.get(place_id)
+
+    def get_all_places(self):
+        return self.places_repo.get_all()
 
     # ---------- Reviews (Task 5) ----------
-    def create_review(self, data: dict):
-      
+    def create_review(self, data: dict) -> Review:
         review = Review(**data)
-        self.repo.add(review)
+        self.reviews_repo.add(review)
         return review
 
-    def get_review(self, review_id: str):
-        return self.repo.get(Review, review_id)
+    def get_review(self, review_id: str) -> Review | None:
+        return self.reviews_repo.get(review_id)
 
-    def update_review(self, review_id: str, data: dict):
-        review = self.get_review(review_id)
-        if not review:
-            return None
+    def get_all_reviews(self):
+        return self.reviews_repo.get_all()
 
-        
-        for k, v in data.items():
-            setattr(review, k, v)
-
-        
-        if hasattr(review, "save"):
-            review.save()
-
-        
-        if hasattr(self.repo, "update"):
-            self.repo.update(review)
-
-        return review
+    def update_review(self, review_id: str, data: dict) -> Review | None:
+        # يعتمد على وجود update() داخل الموديل
+        return self.reviews_repo.update(review_id, data)
 
     def delete_review(self, review_id: str) -> bool:
-        review = self.get_review(review_id)
-        if not review:
-            return False
-
-       
-        self.repo.delete(Review, review_id)
-        return True
+        return self.reviews_repo.delete(review_id)
 
     def get_reviews_by_place(self, place_id: str):
-       
-        reviews = self.repo.get_all(Review)
-        return [r for r in reviews if getattr(r, "place_id", None) == place_id]
+        return [r for r in self.get_all_reviews() if getattr(r, "place_id", None) == place_id]
