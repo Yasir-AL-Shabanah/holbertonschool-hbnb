@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from app.persistence.repository import InMemoryRepository
 from app.models.review import Review
 from app.models.place import Place
@@ -6,7 +7,7 @@ from app.models.user import User
 
 class HBnBFacade:
     def __init__(self) -> None:
-        # ✅ Repository منفصل لكل كيان
+        # Repository منفصل لكل كيان
         self.users_repo = InMemoryRepository()
         self.places_repo = InMemoryRepository()
         self.reviews_repo = InMemoryRepository()
@@ -35,7 +36,7 @@ class HBnBFacade:
     def get_all_places(self):
         return self.places_repo.get_all()
 
-    # ---------- Reviews (Task 5) ----------
+    # ---------- Reviews ----------
     def create_review(self, data: dict) -> Review:
         review = Review(**data)
         self.reviews_repo.add(review)
@@ -48,13 +49,19 @@ class HBnBFacade:
         return self.reviews_repo.get_all()
 
     def update_review(self, review_id: str, data: dict) -> Review | None:
-        # يعتمد على وجود update() داخل الموديل
+        # لازم يكون عندك update داخل InMemoryRepository
         return self.reviews_repo.update(review_id, data)
 
     def delete_review(self, review_id: str) -> bool:
         return self.reviews_repo.delete(review_id)
 
     def get_reviews_by_place(self, place_id: str):
-        return [r for r in self.get_all_reviews() if getattr(r, "place_id", None) == place_id]
+        return [
+            r for r in self.get_all_reviews()
+            if getattr(r, "place_id", None) == place_id
+        ]
 
 
+# ✅ هذا أهم سطر لحل مشكلة ImportError
+# لأن الـ API يستورد: HbnbFacade
+HbnbFacade = HBnBFacade
