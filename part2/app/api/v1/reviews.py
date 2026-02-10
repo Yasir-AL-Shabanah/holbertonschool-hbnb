@@ -20,7 +20,7 @@ Dependencies:
     - Flask-RESTx
     - app.services.facade (acts as a service layer abstraction)
 
-Author:
+Author: Yasir AL-Shabanah
     Your Name (or team/project name)
 
 """
