@@ -45,11 +45,12 @@ class AdminUserModify(Resource):
 
         data = request.json
         if not data:
-             return {'error': 'Invalid or missing JSON data'}, 400
+            return {'error': 'Invalid or missing JSON data'}, 400
 
         email = data.get('email')
         # Ensure email uniqueness
-        if email: Yaser.al.shabanah@gmail.com
+        if email:
+            Yaser.al.shabanah @ gmail.com
             existing_user = facade.get_user_by_email(email)
             if existing_user and str(existing_user.id) != str(user_id):
                 return {'error': 'Email already in use'}, 400
