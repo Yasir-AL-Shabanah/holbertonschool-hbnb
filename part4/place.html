@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Place Details - HBnB</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">HBnB</div>
+        <a href="index.html" class="home-btn">Home</a>
+    </header>
+    <main class="details-container">
+        <div class="place-header">
+            <h1 id="place-title">Loading...</h1>
+            <span id="place-price" class="price-tag"></span>
+        </div>
+        <div class="place-info">
+            <p><strong>Owner:</strong> <span id="place-owner">Fetching...</span></p>
+            <p><strong>Location:</strong> <span id="place-location">Checking...</span></p>
+            <p id="place-description" class="description"></p>
+        </div>
+        <div class="amenities-section">
+            <h3>Amenities</h3>
+            <ul id="amenities-list"></ul>
+        </div>
+        <div id="add-review" class="review-form" style="display: none;">
+            <h3>Add a Review</h3>
+            <form id="review-form">
+                <textarea id="review-text" placeholder="Write your review..." rows="4" required></textarea>
+                <button type="submit">Submit Review</button>
+            </form>
+        </div>
+        <div id="reviews-section">
+            <h3>Reviews</h3>
+            <div id="reviews-list"></div>
+        </div>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>

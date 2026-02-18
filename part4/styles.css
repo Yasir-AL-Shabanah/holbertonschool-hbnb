@@ -1,16 +1,18 @@
 body { font-family: 'Circular', Arial, sans-serif; margin: 0; background-color: #f7f7f7; color: #484848; }
 header { background: white; padding: 15px 40px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; }
 .logo { font-size: 24px; font-weight: bold; color: #ff5a5f; }
-.login-btn, .home-btn { text-decoration: none; color: #484848; font-weight: bold; }
-
+.login-btn, .home-btn { text-decoration: none; color: #484848; font-weight: bold; cursor: pointer; }
 .places-container { display: flex; flex-wrap: wrap; padding: 40px; justify-content: center; gap: 30px; }
 .place-card { background: white; border: 1px solid #dddddd; border-radius: 12px; width: 300px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
 .place-card:hover { transform: translateY(-5px); }
-.place-card h2 { font-size: 18px; margin: 10px 0; }
 .price { color: #ff5a5f; font-weight: bold; font-size: 16px; float: right; }
 .details-btn { width: 100%; padding: 10px; background: #ff5a5f; color: white; border: none; border-radius: 8px; cursor: pointer; margin-top: 15px; }
-
+.details-container { max-width: 800px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; border: 1px solid #ddd; }
+.place-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px; }
+.price-tag { font-size: 24px; color: #ff5a5f; font-weight: bold; }
+.description { line-height: 1.6; margin-top: 15px; }
+.amenities-section, .review-form { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
 .login-container { max-width: 400px; margin: 60px auto; background: white; padding: 40px; border-radius: 12px; border: 1px solid #ddd; text-align: center; }
-input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; }
+input, textarea { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; }
 button { width: 96%; padding: 12px; background: #ff5a5f; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; }
 footer { text-align: center; padding: 20px; border-top: 1px solid #ddd; background: white; margin-top: 50px; }
